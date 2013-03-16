@@ -1,5 +1,7 @@
 ### Persistence and Widget Framework for Python and MongoDB
 
+remove key __active__ __modify__ __create__
+
 Google Group: http://groups.google.com/group/humongolus
 
 #### Features

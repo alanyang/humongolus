@@ -658,23 +658,31 @@ class Document(base):
         for i in cls._indexes: i.create(conn)
 
     @classmethod
-    def __remove__(cls, *args, **kwargs):
-        cls._connection().remove(*args, **kwargs)
+    def remove(cls, *args, **kwargs):
+        return cls._connection().remove(*args, **kwargs)
     
     @classmethod
-    def __update__(cls, *args, **kwargs):
-        cls._connection().update(*args, **kwargs)    
+    def update(cls, *args, **kwargs):
+        return cls._connection().update(*args, **kwargs)    
+
+    @classmethod
+    def find_and_modify(cls, *args, **kwargs):
+        return cls._connection().find_and_modify(*args,**kwargs)
+
+    @classmethod
+    def count(cls):
+        return cls._connection().find().count()
 
     def remove(self):
         """Remove document. Calls .remove on pymongo Connection
 
         """
-        self.__class__.__remove__({"_id":self._id})
+        self.__class__.remove({"_id":self._id})
     
     def update(self, update, **kwargs):
         """Update itself. Allows for custom saving, ie; not using safe=True
         """
-        self.__class__.__update__({"_id":self._id}, update, **kwargs)
+        self.__class__.update({"_id":self._id}, update, **kwargs)
     
 
     def json(self):

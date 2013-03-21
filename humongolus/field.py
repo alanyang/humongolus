@@ -204,6 +204,10 @@ class Email(Regex):
     r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-011\013\014\016-\177])*"' # quoted-string
     r')@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}$', re.IGNORECASE)  # domain
 
+class Url(Regex):
+    _disp_error = "Invalid Url Address"
+    _reg = re.compile(r"((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)")
+
 class Phone(Char):
 
     def clean(self, val, doc=None):
